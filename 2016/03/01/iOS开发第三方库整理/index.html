@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="网络Moya - 抽象网络层 Alamofire - 网络 ResponseDetective - 调适网络请求 Reachability - 网络状况监控">
+<meta name="keywords" content="framework">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发第三方库整理">
+<meta property="og:url" content="http://yoursite.com/2016/03/01/iOS开发第三方库整理/index.html">
+<meta property="og:site_name" content="JUST DO IT">
+<meta property="og:description" content="网络Moya - 抽象网络层 Alamofire - 网络 ResponseDetective - 调适网络请求 Reachability - 网络状况监控">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-06-04T09:02:03.889Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发第三方库整理">
+<meta name="twitter:description" content="网络Moya - 抽象网络层 Alamofire - 网络 ResponseDetective - 调适网络请求 Reachability - 网络状况监控">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2016/03/01/iOS开发第三方库整理/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>iOS开发第三方库整理 | JUST DO IT</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">JUST DO IT</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/01/iOS开发第三方库整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Klein">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JUST DO IT">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS开发第三方库整理
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-03-01 13:53:01" itemprop="dateCreated datePublished" datetime="2016-03-01T13:53:01+08:00">2016-03-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-04 17:02:03" itemprop="dateModified" datetime="2019-06-04T17:02:03+08:00">2019-06-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2016/03/01/iOS开发第三方库整理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/03/01/iOS开发第三方库整理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><p><a href="https://github.com/Moya/Moya" target="_blank" rel="noopener">Moya</a> - 抽象网络层</p>
+<p><a href="https://github.com/Alamofire/Alamofire" target="_blank" rel="noopener">Alamofire</a> - 网络</p>
+<p><a href="https://github.com/netguru/ResponseDetective" target="_blank" rel="noopener">ResponseDetective</a> - 调适网络请求</p>
+<p><a href="https://github.com/ashleymills/Reachability.swift" target="_blank" rel="noopener">Reachability</a> - 网络状况监控</p>
+<a id="more"></a>
+
+<hr>
+<h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><p><a href="https://github.com/stephencelis/SQLite.swift" target="_blank" rel="noopener">SQLite.swift</a> - 简单、轻量 SQLite 封装库 </p>
+<p><a href="https://github.com/realm/realm-cocoa" target="_blank" rel="noopener">Realm</a> - 移动端数据库</p>
+<p><a href="https://github.com/magicalpanda/MagicalRecord" target="_blank" rel="noopener">MagicalRecord</a> - Core Data 帮手实现活动记录模式</p>
+<p><a href="https://github.com/carambalabs/SugarRecord" target="_blank" rel="noopener">SugarRecord</a> - CoreData 与 Realm 的封装</p>
+<p><a href="https://github.com/drewmccormack/ensembles" target="_blank" rel="noopener">Ensembles</a> - Core Data 同步</p>
+<hr>
+<h3 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h3><h4 id="弹窗"><a href="#弹窗" class="headerlink" title="弹窗"></a>弹窗</h4><p><a href="https://github.com/codestergit/SweetAlert-iOS" target="_blank" rel="noopener">SweetAlert</a> - 带动画效果弹窗封装类</p>
+<p><a href="https://github.com/Ramotion/animated-tab-bar" target="_blank" rel="noopener">RAMAnimatedTabBarController</a> - 带动画效果的tabbar控件库</p>
+<h4 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h4><p><a href="https://github.com/SnapKit/SnapKit" target="_blank" rel="noopener">SnapKit</a> - 用代码轻松auto layout</p>
+<p><a href="https://github.com/robb/Cartography" target="_blank" rel="noopener">Cartography</a> - 用代码轻松auto layout</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p><a href="https://github.com/xmartlabs/XLPagerTabStrip" target="_blank" rel="noopener">XLPagerTabStrip</a> - 分页控制器</p>
+<p><a href="https://github.com/danielgindi/Charts" target="_blank" rel="noopener">Charts</a> - 图表</p>
+<p><a href="https://github.com/lexrus/LTMorphingLabel" target="_blank" rel="noopener">LTMorphingLabel</a> - 各种文字动画效果</p>
+<p><a href="https://github.com/PrideChung/FontAwesomeKit" target="_blank" rel="noopener">FontAwesomeKit</a> - 轻松地添加酷字体到你的app中</p>
+<p><a href="https://github.com/MortimerGoro/MGSwipeTableCell" target="_blank" rel="noopener">MGSwipeTableCell</a> - 可滑动的table view cells</p>
+<p><a href="https://github.com/nickoneill/PermissionScope" target="_blank" rel="noopener">PermissionScope</a> - 巧妙的提前问用户要系统许可</p>
+<p><a href="https://github.com/TransitApp/SVProgressHUD" target="_blank" rel="noopener">SVProgressHUD</a> - 自定义等待菊花</p>
+<p><a href="https://github.com/pkluz/PKRevealController" target="_blank" rel="noopener">PKRevealController</a> - 滑动边栏</p>
+<p><a href="https://github.com/slackhq/SlackTextViewController" target="_blank" rel="noopener">SlackTextViewController</a> - 高度自定义text field</p>
+<p><a href="https://github.com/raulriera/TextFieldEffects" target="_blank" rel="noopener">TextFieldEffects</a> - 自定义外观text fields</p>
+<p><a href="https://github.com/ArtSabintsev/FontBlaster" target="_blank" rel="noopener">FontBlaster</a> - 轻松在app中加载自定义字体</p>
+<p><a href="https://github.com/JanC/TAPromotee" target="_blank" rel="noopener">TAPromotee</a> - 在你的app中交叉提示，置入界面</p>
+<p><a href="https://github.com/romaonthego/RETableViewManager" target="_blank" rel="noopener">RETableViewManager</a> - 用代码动态创建table view</p>
+<p><a href="https://github.com/dzenbot/DZNEmptyDataSet" target="_blank" rel="noopener">DZNEmptyDataSet</a> - 空table view解决方案</p>
+<p><a href="https://github.com/jivesoftware/PDTSimpleCalendar" target="_blank" rel="noopener">PDTSimpleCalendar</a> - 可放入日历组件</p>
+<p><a href="https://github.com/Instagram/IGListKit" target="_blank" rel="noopener">IGListKit</a> - UICollectionView 框架</p>
+<p><a href="https://github.com/facebook/AsyncDisplayKit" target="_blank" rel="noopener">AsyncDisplayKit</a> - 异步 UI SDK</p>
+<p><a href="https://github.com/dzenbot/DZNEmptyDataSet" target="_blank" rel="noopener">DZNEmptyDataSet</a> - 空状态模式</p>
+<p><a href="https://github.com/ViccAlexander/Chameleon" target="_blank" rel="noopener">Chameleon</a> - 扁平化颜色框架 </p>
+<p><a href="https://github.com/MortimerGoro/MGSwipeTableCell" target="_blank" rel="noopener">MGSwipeTableCell</a> - 可以滑动的 table cells</p>
+<p><a href="https://github.com/WenchaoD/FSCalendar" target="_blank" rel="noopener">FSCalendar</a> - 日历</p>
+<p><a href="https://github.com/MailOnline/ImageViewer" target="_blank" rel="noopener">ImageViewer</a> - 模仿 Twitter 的图片查看器</p>
+<hr>
+<h3 id="刷新"><a href="#刷新" class="headerlink" title="刷新"></a>刷新</h3><p><a href="https://github.com/dasdom/BreakOutToRefresh" target="_blank" rel="noopener">BreakOutToRefresh</a> - 一个下拉刷新打砖块的swift库</p>
+<p><a href="https://github.com/gsdios/SDRefreshView" target="_blank" rel="noopener">SDRefreshView</a> 简单易用的上拉和下拉刷新</p>
+<p><a href="https://github.com/MakeZL/ZLSwiftRefresh" target="_blank" rel="noopener">ZLSwiftRefresh</a> - 下拉刷新/上拉加载更多，支持自定义动画，集成简单</p>
+<p><a href="https://github.com/andreamazz/GearRefreshControl" target="_blank" rel="noopener">GearRefreshControl</a> - 一个非常精细的下拉刷新 做的很细心</p>
+<p><a href="https://github.com/jcavar/refresher" target="_blank" rel="noopener">refresher</a> - 简洁清爽的下拉刷新</p>
+<p><a href="https://github.com/entotsu/PullToBounce" target="_blank" rel="noopener">PullToBounce</a> - 弹性动画 非常炫酷的下拉刷新</p>
+<p><a href="https://github.com/Shuangzuan/RCTRefreshControl" target="_blank" rel="noopener">RCTRefreshControl</a> - qq的橡皮糖下拉刷新</p>
+<p><a href="https://github.com/Yalantis/PullToRefresh" target="_blank" rel="noopener">PullToRefresh</a> - 刷新动画可定制的下拉数据请求更新组件</p>
+<p><a href="https://github.com/MakeZL/MLSwiftBasic" target="_blank" rel="noopener">MLSwiftBasic</a> - 集合自定义导航栏、下拉刷新/上拉加载更多、视觉效果、好用分类等等一系列，却耦合性很低的Swift库!</p>
+<hr>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p><a href="https://github.com/rs/SDWebImage" target="_blank" rel="noopener">SDWebImage</a> - OC 图片加载框架</p>
+<p><a href="https://github.com/BradLarson/GPUImage" target="_blank" rel="noopener">GPUImage</a> - 快速图像处理</p>
+<p><a href="https://github.com/contentful-labs/Concorde" target="_blank" rel="noopener">Concorde</a> - 下载和解码进度化JPEGs</p>
+<p><a href="https://github.com/onevcat/Kingfisher" target="_blank" rel="noopener">Kingfisher</a> - 下载图片 </p>
+<p><a href="https://github.com/suzuki-0000/SKPhotoBrowser" target="_blank" rel="noopener">SKPhotoBrowser</a> - 图片浏览</p>
+<p><a href="https://github.com/ytakzk/Fusuma" target="_blank" rel="noopener">Fusuma</a> - 拍照与查看</p>
+<hr>
+<h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><p><a href="https://github.com/MengTo/Spring" target="_blank" rel="noopener">Spring</a> - 动画框架</p>
+<p><a href="https://github.com/lkzhao/Hero" target="_blank" rel="noopener">Hero</a> - 自定义试图控制器过渡动画</p>
+<hr>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p><a href="https://github.com/liman123/DebugMan" target="_blank" rel="noopener">DebugMan</a> - 本地调试</p>
+<p><a href="https://github.com/Quick/Quick" target="_blank" rel="noopener">Quick</a> + <a href="https://github.com/Quick/Nimble" target="_blank" rel="noopener">Nimble</a> - BDD 测试</p>
+<p><a href="https://github.com/dani-gavrilov/GDPerformanceView-Swift" target="_blank" rel="noopener">GDPerformanceView</a> - 实时 FPS and CPU 用量</p>
+<hr>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p><a href="https://github.com/ReactiveX/RxSwift" target="_blank" rel="noopener">RxSwift</a> - reactive 编程</p>
+<p><a href="https://github.com/ReactiveCocoa/ReactiveCocoa" target="_blank" rel="noopener">ReactiveCocoa</a> - FRP框架</p>
+<p><a href="https://github.com/mxcl/PromiseKit" target="_blank" rel="noopener">PromiseKit</a> - promises</p>
+<p><a href="https://github.com/square/Cleanse" target="_blank" rel="noopener">Cleanse</a> - 轻量级且功能完善的 Swift 版依赖注入框架</p>
+<hr>
+<h3 id="其他工具"><a href="#其他工具" class="headerlink" title="其他工具"></a>其他工具</h3><h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><p><a href="https://github.com/SwiftyJSON/SwiftyJSON" target="_blank" rel="noopener">SwiftyJSON</a> - JSON 解析</p>
+<h4 id="其他-1"><a href="#其他-1" class="headerlink" title="其他"></a>其他</h4><p><a href="https://github.com/square/Valet" target="_blank" rel="noopener">Valet</a> - 钥匙串帮手</p>
+<p><a href="https://firebase.google.com/docs/analytics/" target="_blank" rel="noopener">Firebase Analytics</a> - 分析</p>
+<p><a href="https://github.com/nickoneill/PermissionScope" target="_blank" rel="noopener">PermissionScope</a> - iOS 权限框架</p>
+<p><a href="https://github.com/nvzqz/FileKit" target="_blank" rel="noopener">FileKit</a> - 文件管理</p>
+<p><a href="https://github.com/radex/SwiftyUserDefaults" target="_blank" rel="noopener">SwiftyUserDefaults</a> - user defaults 帮手</p>
+<p><a href="https://github.com/onevcat/Hedwig" target="_blank" rel="noopener">Hedwig</a> - 发送 email</p>
+<p><a href="https://github.com/dennisweissmann/DeviceKit" target="_blank" rel="noopener">DeviceKit</a> - 设备信息</p>
+<p><a href="https://github.com/nvzqz/RandomKit" target="_blank" rel="noopener">RandomKit</a> - 随机生成数字</p>
+<p><a href="https://github.com/mamaral/Onboard" target="_blank" rel="noopener">Onboard</a> - 用户指导页</p>
+<p><a href="https://github.com/krzyzanowskim/Natalie" target="_blank" rel="noopener">Natalie</a> - 从 storyboard 生成代码</p>
+<p><a href="https://github.com/bizz84/SwiftyStoreKit" target="_blank" rel="noopener">SwiftyStoreKit</a> - app 内购</p>
+<p><a href="https://github.com/naoty/Timepiece" target="_blank" rel="noopener">Timepiece</a> - date 帮手</p>
+<p><a href="https://github.com/krzyzanowskim/CryptoSwift" target="_blank" rel="noopener">CryptoSwift</a> - 加密</p>
+<p><a href="https://github.com/nicklockwood/iRate" target="_blank" rel="noopener">iRate</a> - 获得用户评价</p>
+<p><a href="https://github.com/nihalahmed/GameCenterManager" target="_blank" rel="noopener">GameCenterManager</a> - 轻松管理Game Center</p>
+<p><a href="https://github.com/saturngod/IAPHelper" target="_blank" rel="noopener">IAPHelper</a> - app内购封装帮手</p>
+<p><a href="https://github.com/kishikawakatsumi/KeychainAccess" target="_blank" rel="noopener">KeychainAccess</a> - 轻松管理钥匙串</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/framework/" rel="tag"># framework</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/14/过滤字符串/" rel="next" title="过滤字符串">
+                <i class="fa fa-chevron-left"></i> 过滤字符串
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/24/iOS开发总结/" rel="prev" title="iOS开发总结">
+                iOS开发总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Klein</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络"><span class="nav-number">1.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储"><span class="nav-number">2.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#界面"><span class="nav-number">3.</span> <span class="nav-text">界面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#弹窗"><span class="nav-number">3.1.</span> <span class="nav-text">弹窗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#布局"><span class="nav-number">3.2.</span> <span class="nav-text">布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他"><span class="nav-number">3.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#刷新"><span class="nav-number">4.</span> <span class="nav-text">刷新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片"><span class="nav-number">5.</span> <span class="nav-text">图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画"><span class="nav-number">6.</span> <span class="nav-text">动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试"><span class="nav-number">7.</span> <span class="nav-text">调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架"><span class="nav-number">8.</span> <span class="nav-text">框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他工具"><span class="nav-number">9.</span> <span class="nav-text">其他工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解析"><span class="nav-number">9.1.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他-1"><span class="nav-number">9.2.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Klein</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,188,212" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'qa7aCwL1DC7SWgWDczPwKWDu-gzGzoHsz',
+    appKey: 'WiCTDzJ4nnf7uLMwosqaIxbu',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script>pangu.spacingPage();</script>
+
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
