@@ -112,14 +112,14 @@
 
 
   <meta name="description" content="一、关键字1、const作用：  用来修饰右边的基本变量或指针变量 被修饰的变量只读，不能被修改">
-<meta name="keywords" content="iOS,Swift">
+<meta name="keywords" content="iOS,Objective-C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发总结">
 <meta property="og:url" content="http://yoursite.com/2018/06/24/iOS开发总结/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="一、关键字1、const作用：  用来修饰右边的基本变量或指针变量 被修饰的变量只读，不能被修改">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-25T07:21:05.166Z">
+<meta property="og:updated_time" content="2019-06-25T09:53:09.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发总结">
 <meta name="twitter:description" content="一、关键字1、const作用：  用来修饰右边的基本变量或指针变量 被修饰的变量只读，不能被修改">
@@ -416,7 +416,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-25 15:21:05" itemprop="dateModified" datetime="2019-06-25T15:21:05+08:00">2019-06-25</time>
+                <time title="修改时间：2019-06-25 17:53:09" itemprop="dateModified" datetime="2019-06-25T17:53:09+08:00">2019-06-25</time>
               
             
           </span>
@@ -495,7 +495,7 @@
 <p>常用用法：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> * <span class="keyword">const</span> KCAppkey = <span class="string">@"appkey"</span>;    <span class="comment">//定义一个全局只读变量</span></span><br><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *<span class="keyword">const</span> KCErrorMsg = <span class="string">@"error network"</span>;  <span class="comment">//static修饰后此全局变量只能本文件访问</span></span><br></pre></td></tr></table></figure>
 
-<p>扩展：<br>与宏的区别：</p>
+<p>与宏的区别：</p>
 <ul>
 <li>执行时刻: 宏是预编译（编译之前处理），const是编译阶段。</li>
 <li>编译检查: 宏不做检查，不会报编译错误，只是替换，const会编译检查，会报编译错误。</li>
@@ -519,23 +519,40 @@
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="built_in">CGFloat</span> <span class="keyword">const</span> KCHeaderViewH = <span class="number">40</span>;</span><br><span class="line"><span class="built_in">CGFloat</span> <span class="keyword">const</span> KCHeaderViewW = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
 
 <p>再创建一个pch文件，导入上面类的头文件<br>注意：创建pch文件需要在Target/Build Setting/Prefix Header下设置pch的路径，只需要当前工程内部路径。</p>
-<h4 id="5、属性关键字-strong-weak-assign-copy"><a href="#5、属性关键字-strong-weak-assign-copy" class="headerlink" title="5、属性关键字 strong, weak, assign, copy"></a>5、属性关键字 strong, weak, assign, copy</h4><ul>
-<li>strong表示指向并拥有该对象。其修饰的对象引用计数会增加1。该对象只要引用计数不为0则不会被销毁。当然强行将其设为nil可以销毁它。</li>
-<li>weak表示指向但不拥有该对象。其修饰的对象引用计数不会增加。无需手动设置，该对象会自行在内存中销毁。</li>
-<li>assign主要用于修饰基本数据类型，如NSInteger和CGFloat，这些数值主要存在于栈上。<br>weak 一般用来修饰对象，assign一般用来修饰基本数据类型。原因是assign修饰的对象被释放后，指针的地址依然存在，造成野指针，在堆上容易造成崩溃。而栈上的内存系统会自动处理，不会造成野指针。</li>
-<li>copy有深拷贝的浅拷贝区别，浅拷贝的与strong效果一致。copy一般用在修饰有可变对应类型的不可变对象上，如<code>NSString, NSArray, NSDictionary</code>，也可以用来修饰block。如：</li>
+<h4 id="5、属性参数"><a href="#5、属性参数" class="headerlink" title="5、属性参数"></a>5、属性参数</h4><p>主要分三类：</p>
+<ul>
+<li>原子性：<code>atomic，nonatomic</code></li>
+<li>读写语义：<code>readwrite，readonly，getter，setter</code></li>
+<li>内存管理语义：<code>assign，weak，unsafe_unretained，retain，strong，copy</code></li>
 </ul>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span>* name;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="keyword">void</span>(^cancelBlock)();</span><br></pre></td></tr></table></figure>
+<p>其中最重要的是内存管理语义，要理解内存管理语义的作用和用法，首先要理解内存管理中的引用计数原理，也就是要理解OC的内存管理机制，属性参数的内存管理语义是OC中协助管理内存的很重要一部分。各种属性参数的含义和区别如下：</p>
+<ul>
+<li><code>atomic、nonatomic</code>：原子性和非原子性。原子性是数据库原理里面的一个概念，ACID中的第一个。在多线程中同一个变量可能被多个线程访问甚至更改造成数据污染，因此为了安全，OC中默认是<code>atomic</code>，会对<code>setter</code>方法加锁，相应的也会付出维护原子性（数据加锁解锁等）的系统资源代价。应用中如果不是特殊情况（多线程间的通讯编程），一般还是用<code>nonatomic</code>来修饰变量的，不会对<code>setter</code>方法加锁，以提高多线程并发访问时的性能。<code>atomic</code>比<code>nonatomic</code>安全，但也并不是绝对的线程安全，例如多个线程同时调用set和get就会导致获得的对象值不一样。绝对的线程安全就要用 <code>@synchronize</code>，默认参数为<code>atomic</code>；</li>
+<li><code>readonly、readwrite</code>：<code>readonly</code>表示变量只读，也就是它修饰的变量只有get方法没有set方法；<code>readwrite</code>就是既有get方法也有set方法了，可读亦可写；</li>
+<li><code>getter = &lt; gettername &gt;, setter = &lt; settername &gt;</code>：可以选择性的在括号里直接指定存取方法的方法名，例如：</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">getter</span>=isSelected, <span class="keyword">assign</span>) <span class="built_in">BOOL</span> selected;</span><br></pre></td></tr></table></figure>
 
-<p>Objective-C 中，基本数据类型的默认关键字是<code>atomic, readwrite, assign</code>；普通属性的默认关键字是<code>atomic, readwrite, strong</code>。</p>
-<h4 id="6、weak，block"><a href="#6、weak，block" class="headerlink" title="6、weak，block"></a>6、<strong>weak，</strong>block</h4><ul>
-<li><strong>weak与weak基本相同。前者用于修饰变量（variable），后者用于修饰属性（property）。</strong>weak主要用于防止block中的循环引用。</li>
-<li><strong>block也用于修饰变量。它是引用修饰，所以其修饰的值是动态变化的，即可以被重新赋值的。</strong>block用于修饰某些block内部将要修改的外部变量。</li>
+<ul>
+<li><code>strong</code>表示指向并拥有该对象。其修饰的对象引用计数会增加1。该对象只要引用计数不为0则不会被销毁。当然强行将其设为nil可以销毁它。</li>
+<li><code>weak</code>：主要可以用于避免循环引用，和<code>strong/retain</code>对应，功能上和assign一样简单，但不同的是用<code>weak</code>修饰的对象消失后会自动将指针置nil，防止出现‘悬挂指针’（指针的指向内存被删除导致）；</li>
+<li><code>unsafe_unretained</code>：这种修饰方式不常用，通过名字看出它是不安全的，为什么这么说呢？首先它和<code>weak</code>类似都是自己创建并持有的对象之后却不会继续被自己持有(引用计数没有+1，引用计数为0的时候会被自动释放，尽管<code>unsafe_unretained</code>和<code>weak</code>修饰的指针还指向那个对象)。不同的是虽然在ARC中由编译器来自动管理内存，但<code>unsafe_unretained</code>修饰的变量并不会被编译器进行内存管理，也就是说既不是强引用也不是弱引用，生成的对象立刻就被释放掉了，也就是出现了所谓的‘悬挂指针’，所以不安全。</li>
+<li><code>retain</code>：常用于引用类型，是为了持有对象，声明强引用，将指针本来指向的旧的引用对象释放掉，然后将指针指向新的引用对象，同时将新对象的索引计数加1；</li>
+<li><code>strong</code>：原理和<code>retain</code>类似，只不过在使用ARC自动引用计数时，用<code>strong</code>代替<code>retain</code>；</li>
+<li><code>copy</code>：建立一个和新对象内容相同且索引计数为1的对象，指针指向这个对象，然后释放指针之前指向的旧对象。<code>NSString</code>变量一般都用<code>copy</code>修饰，因为字符串常用于直接复制，而不是去引用某个字符串；</li>
 </ul>
-<p><strong>weak和</strong>block的使用场景几乎与block息息相关。而所谓block，就是Objective-C对于闭包的实现。闭包就是没有名字的函数，或者理解为指向函数的指针。</p>
-<h4 id="7、atomatic-nonatomic"><a href="#7、atomatic-nonatomic" class="headerlink" title="7、atomatic, nonatomic"></a>7、atomatic, nonatomic</h4><ul>
-<li>atomic修饰的对象会保证setter和getter的完整性，任何线程对其访问都可以得到一个完整的初始化后的对象。因为要保证操作完成，所以速度慢。它比nonatomic安全，但也并不是绝对的线程安全，例如多个线程同时调用set和get就会导致获得的对象值不一样。绝对的线程安全就要用 @synchronize。</li>
-<li>nonatomic修饰的对象不保证setter和getter的完整性，所以多个线程对它进行访问，它可能会返回未初始化的对象。正因为如此，它比atomic快，但也是线程不安全的。</li>
+<p>Objective-C 中，基本数据类型的默认关键字是<code>atomic, readwrite, assign</code>；普通属性的默认关键字是<code>atomic, readwrite, strong</code>。</p>
+<h4 id="6、所有权修饰符"><a href="#6、所有权修饰符" class="headerlink" title="6、所有权修饰符"></a>6、所有权修饰符</h4><ul>
+<li><code>__strong</code>修饰符对应于上面的<code>strong</code>和<code>retain</code>还有<code>copy</code>，强引用来持有对象，通过引用计数来持有实例对象；</li>
+<li><code>__weak</code>修饰符对应于上面的<code>weak</code>，用于防止循环引用问题；</li>
+<li><code>__unsafe __unretained</code>修饰符对应于上面的<code>assign</code>和<code>unsafe_unretained</code>，创建但不持有对象，可能导致指针悬挂。</li>
+<li><code>__block</code>用于修饰变量。它是引用修饰，所以其修饰的值是动态变化的，即可以被重新赋值的。__block用于修饰某些block内部将要修改的外部变量。</li>
+</ul>
+<h4 id="7、访问权限修饰符"><a href="#7、访问权限修饰符" class="headerlink" title="7、访问权限修饰符"></a>7、访问权限修饰符</h4><ul>
+<li><code>@protected</code>：默认值，表示变量对子类可见，而对于其他类来说变量是私有的，不可访问；</li>
+<li><code>@private</code>：表示变量完全私有化，只对本类可见，其子类也不可访问；</li>
+<li><code>@public</code>：公开变量，表示变量对所有类都是开放可见的，都可以访问；</li>
+<li><code>@package</code>：一般在开发静态类库的时候会用到，意思是这个关键词修饰的变量对于framework包内部来说是<code>@protected</code>类型的，而对于包外来说是<code>@priviate</code>类型的，这样可以实现包内变量的封装，包内可以使用而包外不可用，防止使用该包的人看到这些变量。</li>
 </ul>
 <h4 id="8、深拷贝与浅拷贝"><a href="#8、深拷贝与浅拷贝" class="headerlink" title="8、深拷贝与浅拷贝"></a>8、深拷贝与浅拷贝</h4><ul>
 <li>浅拷贝： 拷贝的是指针地址，拷贝出来的对象与源对象地址一致! 这意味着我修改拷贝对象的值会直接影响到源对象.</li>
@@ -608,8 +625,8 @@
 <p>容器类可变对象<code>mutableCopy</code>和<code>copy</code>都返回一个新的容器，但容器内的元素仍然是浅拷贝；<br>自定义类对象的深浅拷贝需继承<code>&lt;NSCopying&gt;,&lt;NSMutableCopying&gt;</code>实现协议方法<code>copyWithZone,mutableCopyWithZone</code>；
 属性使用<code>copy</code>修饰时，本质是在其<code>setter</code>方法中进行了<code>copy</code>操作</p>
 <ul>
-<li><code>strong</code>对应的setter方法，是将_property先<code>_property release</code>，然后执行<code>property retain</code>，最后执行<code>_property = property</code>。</li>
-<li><code>copy</code>对应的setter方法，是将_property先<code>_property release</code>，然后执行<code>property copy</code>，最后执行<code>_property = property</code>。</li>
+<li><code>strong</code>对应的setter方法，先执行<code>[_property release]</code>，然后执行<code>_property = [property retain]</code>。</li>
+<li><code>copy</code>对应的setter方法，先执行<code>[_property release]</code>，然后执行<code>_property = [property copy]</code>。</li>
 </ul>
 
       
@@ -639,7 +656,7 @@
           
             <a href="/tags/iOS/" rel="tag"># iOS</a>
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
+            <a href="/tags/Objective-C/" rel="tag"># Objective-C</a>
           
         </div>
       
@@ -823,7 +840,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、关键字"><span class="nav-number">1.</span> <span class="nav-text">一、关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、const"><span class="nav-number">1.1.</span> <span class="nav-text">1、const</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、static"><span class="nav-number">1.2.</span> <span class="nav-text">2、static</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、extern"><span class="nav-number">1.3.</span> <span class="nav-text">3、extern</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、UIKIT-EXTERN"><span class="nav-number">1.4.</span> <span class="nav-text">4、UIKIT_EXTERN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、属性关键字-strong-weak-assign-copy"><span class="nav-number">1.5.</span> <span class="nav-text">5、属性关键字 strong, weak, assign, copy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6、weak，block"><span class="nav-number">1.6.</span> <span class="nav-text">6、weak，block</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、atomatic-nonatomic"><span class="nav-number">1.7.</span> <span class="nav-text">7、atomatic, nonatomic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8、深拷贝与浅拷贝"><span class="nav-number">1.8.</span> <span class="nav-text">8、深拷贝与浅拷贝</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、关键字"><span class="nav-number">1.</span> <span class="nav-text">一、关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、const"><span class="nav-number">1.1.</span> <span class="nav-text">1、const</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、static"><span class="nav-number">1.2.</span> <span class="nav-text">2、static</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、extern"><span class="nav-number">1.3.</span> <span class="nav-text">3、extern</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、UIKIT-EXTERN"><span class="nav-number">1.4.</span> <span class="nav-text">4、UIKIT_EXTERN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、属性参数"><span class="nav-number">1.5.</span> <span class="nav-text">5、属性参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6、所有权修饰符"><span class="nav-number">1.6.</span> <span class="nav-text">6、所有权修饰符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、访问权限修饰符"><span class="nav-number">1.7.</span> <span class="nav-text">7、访问权限修饰符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8、深拷贝与浅拷贝"><span class="nav-number">1.8.</span> <span class="nav-text">8、深拷贝与浅拷贝</span></a></li></ol></li></ol></div>
             
 
           </div>
