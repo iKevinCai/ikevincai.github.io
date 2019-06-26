@@ -96,11 +96,11 @@
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'WFIQUCY8O5',
+      apiKey: 'd569186ee75b3906065fba5f91d7c46f',
+      indexName: 'blog',
       hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"没有找到任何与“${query}”匹配的结果","hits_stats":"${hits} 条结果 耗时 ${time} ms"}
     }
   };
 </script>
@@ -115,7 +115,7 @@
 <meta name="keywords" content="混编">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OC与Swift混编">
-<meta property="og:url" content="http://yoursite.com/2016/01/13/OC与Swift混编/index.html">
+<meta property="og:url" content="http://ikevincai.github.io/2016/01/13/OC与Swift混编/index.html">
 <meta property="og:site_name" content="JUST DO IT">
 <meta property="og:description" content="Swift中使用OC 直接新建一个OC的空文件，根据系统提示创建桥文件，在桥文件中导入需要使用的OC的头文件  OC中使用Swift 在OC的类中添加头文件#import &amp;quot;OCandSwift-swift.h&amp;quot;“OCandSwift” 为 Product Module Name 在 Build Settings 中选择 All 可以找到">
 <meta property="og:locale" content="zh-CN">
@@ -130,7 +130,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2016/01/13/OC与Swift混编/">
+  <link rel="canonical" href="http://ikevincai.github.io/2016/01/13/OC与Swift混编/">
 
 
 
@@ -310,11 +310,46 @@
 
       
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
     </ul>
   
 
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -356,7 +391,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/01/13/OC与Swift混编/">
+    <link itemprop="mainEntityOfPage" href="http://ikevincai.github.io/2016/01/13/OC与Swift混编/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Klein">
@@ -899,6 +934,19 @@
 
   
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/algolia-search.js?v=7.1.2"></script>
 
 
 
