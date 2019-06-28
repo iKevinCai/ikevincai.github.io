@@ -111,18 +111,18 @@
 
 
 
-  <meta name="description" content="1、const作用：  用来修饰右边的基本变量或指针变量 被修饰的变量只读，不能被修改">
+  <meta name="description" content="const作用：  用来修饰右边的基本变量或指针变量 被修饰的变量只读，不能被修改">
 <meta name="keywords" content="iOS,Objective-C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ObjC关键字">
 <meta property="og:url" content="http://ikevincai.github.io/2018/06/24/ObjC关键字/index.html">
 <meta property="og:site_name" content="JUST DO IT">
-<meta property="og:description" content="1、const作用：  用来修饰右边的基本变量或指针变量 被修饰的变量只读，不能被修改">
+<meta property="og:description" content="const作用：  用来修饰右边的基本变量或指针变量 被修饰的变量只读，不能被修改">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-26T01:57:53.139Z">
+<meta property="og:updated_time" content="2019-06-28T07:24:37.618Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ObjC关键字">
-<meta name="twitter:description" content="1、const作用：  用来修饰右边的基本变量或指针变量 被修饰的变量只读，不能被修改">
+<meta name="twitter:description" content="const作用：  用来修饰右边的基本变量或指针变量 被修饰的变量只读，不能被修改">
 
 
 
@@ -445,7 +445,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-26 09:57:53" itemprop="dateModified" datetime="2019-06-26T09:57:53+08:00">2019-06-26</time>
+                <time title="修改时间：2019-06-28 15:24:37" itemprop="dateModified" datetime="2019-06-28T15:24:37+08:00">2019-06-28</time>
               
             
           </span>
@@ -510,7 +510,7 @@
       
 
       
-        <h4 id="1、const"><a href="#1、const" class="headerlink" title="1、const"></a>1、const</h4><p>作用：</p>
+        <h2 id="const"><a href="#const" class="headerlink" title="const"></a>const</h2><p>作用：</p>
 <ul>
 <li><strong>用来修饰右边的基本变量或指针变量</strong></li>
 <li><strong>被修饰的变量只读，不能被修改</strong><a id="more"></a>
@@ -531,7 +531,7 @@
 <li>宏的好处: 宏能定义一些函数，方法。 const不能。</li>
 <li>宏的坏处: 使用大量宏，容易造成编译时间久，每次都需要重新替换。</li>
 </ul>
-<h4 id="2、static"><a href="#2、static" class="headerlink" title="2、static"></a>2、static</h4><p>作用：</p>
+<h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><p>作用：</p>
 <ul>
 <li>修饰局部变量：</li>
 </ul>
@@ -540,15 +540,15 @@
 <li>修饰全局变量</li>
 </ul>
 <p>1.只能在本文件中访问,修改全局变量的作用域,生命周期不会改（防止被extern引用）<br>2.避免重复定义全局变量</p>
-<h4 id="3、extern"><a href="#3、extern" class="headerlink" title="3、extern"></a>3、extern</h4><p>作用：<br>只是用来获取全局变量(包括全局静态变量)的值，不能用于实现，而且定义和分配内存都在原来类中。<br>原理：<br>先在当前文件查找有没有全局变量，没有找到，才会去其他文件查找。<br><strong>static与const组合: 在每个文件都需要定义一份静态全局变量。</strong><br><strong>extern与const组合: 只需要定义一份全局变量，多个文件共享。</strong></p>
-<h4 id="4、UIKIT-EXTERN"><a href="#4、UIKIT-EXTERN" class="headerlink" title="4、UIKIT_EXTERN"></a>4、UIKIT_EXTERN</h4><p>定义全局变量：<br>在.h中：</p>
+<h2 id="extern"><a href="#extern" class="headerlink" title="extern"></a>extern</h2><p>作用：<br>只是用来获取全局变量(包括全局静态变量)的值，不能用于实现，而且定义和分配内存都在原来类中。<br>原理：<br>先在当前文件查找有没有全局变量，没有找到，才会去其他文件查找。<br><strong>static与const组合: 在每个文件都需要定义一份静态全局变量。</strong><br><strong>extern与const组合: 只需要定义一份全局变量，多个文件共享。</strong></p>
+<h2 id="UIKIT-EXTERN"><a href="#UIKIT-EXTERN" class="headerlink" title="UIKIT_EXTERN"></a>UIKIT_EXTERN</h2><p>定义全局变量：<br>在.h中：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="built_in">UIKIT_EXTERN</span> <span class="built_in">CGFloat</span> <span class="keyword">const</span> KCHeaderViewH;</span><br><span class="line"><span class="built_in">UIKIT_EXTERN</span> <span class="built_in">CGFloat</span> <span class="keyword">const</span> KCHeaderViewW;</span><br></pre></td></tr></table></figure>
 
 <p>在.m中：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="built_in">CGFloat</span> <span class="keyword">const</span> KCHeaderViewH = <span class="number">40</span>;</span><br><span class="line"><span class="built_in">CGFloat</span> <span class="keyword">const</span> KCHeaderViewW = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
 
 <p>再创建一个pch文件，导入上面类的头文件<br>注意：创建pch文件需要在Target/Build Setting/Prefix Header下设置pch的路径，只需要当前工程内部路径。</p>
-<h4 id="5、属性参数"><a href="#5、属性参数" class="headerlink" title="5、属性参数"></a>5、属性参数</h4><p>主要分三类：</p>
+<h2 id="属性参数"><a href="#属性参数" class="headerlink" title="属性参数"></a>属性参数</h2><p>主要分三类：</p>
 <ul>
 <li>原子性：<code>atomic，nonatomic</code></li>
 <li>读写语义：<code>readwrite，readonly，getter，setter</code></li>
@@ -571,19 +571,19 @@
 <li><code>copy</code>：建立一个和新对象内容相同且索引计数为1的对象，指针指向这个对象，然后释放指针之前指向的旧对象。<code>NSString</code>变量一般都用<code>copy</code>修饰，因为字符串常用于直接复制，而不是去引用某个字符串；</li>
 </ul>
 <p>Objective-C 中，基本数据类型的默认关键字是<code>atomic, readwrite, assign</code>；普通属性的默认关键字是<code>atomic, readwrite, strong</code>。</p>
-<h4 id="6、所有权修饰符"><a href="#6、所有权修饰符" class="headerlink" title="6、所有权修饰符"></a>6、所有权修饰符</h4><ul>
+<h2 id="所有权修饰符"><a href="#所有权修饰符" class="headerlink" title="所有权修饰符"></a>所有权修饰符</h2><ul>
 <li><code>__strong</code>修饰符对应于上面的<code>strong</code>和<code>retain</code>还有<code>copy</code>，强引用来持有对象，通过引用计数来持有实例对象；</li>
 <li><code>__weak</code>修饰符对应于上面的<code>weak</code>，用于防止循环引用问题；</li>
 <li><code>__unsafe __unretained</code>修饰符对应于上面的<code>assign</code>和<code>unsafe_unretained</code>，创建但不持有对象，可能导致指针悬挂。</li>
 <li><code>__block</code>用于修饰变量。它是引用修饰，所以其修饰的值是动态变化的，即可以被重新赋值的。__block用于修饰某些block内部将要修改的外部变量。</li>
 </ul>
-<h4 id="7、访问权限修饰符"><a href="#7、访问权限修饰符" class="headerlink" title="7、访问权限修饰符"></a>7、访问权限修饰符</h4><ul>
+<h2 id="访问权限修饰符"><a href="#访问权限修饰符" class="headerlink" title="访问权限修饰符"></a>访问权限修饰符</h2><ul>
 <li><code>@protected</code>：默认值，表示变量对子类可见，而对于其他类来说变量是私有的，不可访问；</li>
 <li><code>@private</code>：表示变量完全私有化，只对本类可见，其子类也不可访问；</li>
 <li><code>@public</code>：公开变量，表示变量对所有类都是开放可见的，都可以访问；</li>
 <li><code>@package</code>：一般在开发静态类库的时候会用到，意思是这个关键词修饰的变量对于framework包内部来说是<code>@protected</code>类型的，而对于包外来说是<code>@priviate</code>类型的，这样可以实现包内变量的封装，包内可以使用而包外不可用，防止使用该包的人看到这些变量。</li>
 </ul>
-<h4 id="8、深拷贝与浅拷贝"><a href="#8、深拷贝与浅拷贝" class="headerlink" title="8、深拷贝与浅拷贝"></a>8、深拷贝与浅拷贝</h4><ul>
+<h2 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h2><ul>
 <li>浅拷贝： 拷贝的是指针地址，拷贝出来的对象与源对象地址一致! 这意味着我修改拷贝对象的值会直接影响到源对象.</li>
 <li>深拷贝：拷贝出来的对象与源对象地址不一致! 这意味着我修改拷贝对象的值对源对象的值没有任何影响.</li>
 <li><code>copy</code>：返回的对象是通过调用 <code>copyWithZone:</code> 这个方法返回的。</li>
@@ -869,7 +869,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、const"><span class="nav-number">1.</span> <span class="nav-text">1、const</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、static"><span class="nav-number">2.</span> <span class="nav-text">2、static</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、extern"><span class="nav-number">3.</span> <span class="nav-text">3、extern</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、UIKIT-EXTERN"><span class="nav-number">4.</span> <span class="nav-text">4、UIKIT_EXTERN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、属性参数"><span class="nav-number">5.</span> <span class="nav-text">5、属性参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6、所有权修饰符"><span class="nav-number">6.</span> <span class="nav-text">6、所有权修饰符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、访问权限修饰符"><span class="nav-number">7.</span> <span class="nav-text">7、访问权限修饰符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8、深拷贝与浅拷贝"><span class="nav-number">8.</span> <span class="nav-text">8、深拷贝与浅拷贝</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#const"><span class="nav-number">1.</span> <span class="nav-text">const</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static"><span class="nav-number">2.</span> <span class="nav-text">static</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#extern"><span class="nav-number">3.</span> <span class="nav-text">extern</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIKIT-EXTERN"><span class="nav-number">4.</span> <span class="nav-text">UIKIT_EXTERN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性参数"><span class="nav-number">5.</span> <span class="nav-text">属性参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有权修饰符"><span class="nav-number">6.</span> <span class="nav-text">所有权修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问权限修饰符"><span class="nav-number">7.</span> <span class="nav-text">访问权限修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深拷贝与浅拷贝"><span class="nav-number">8.</span> <span class="nav-text">深拷贝与浅拷贝</span></a></li></ol></div>
             
 
           </div>
